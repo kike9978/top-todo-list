@@ -4,11 +4,16 @@ import Task from "./Task"
 const task = Task()
 const project = Project()
 
+let items = []
+
+function clearItems() {
+    items = []
+}
+
 export default function SystemManager() {
-    const items = []
 
     function filterTasksByProjects() {
-
+        clearItems()
 
         project.projects.forEach(entry => {
 
