@@ -1,24 +1,8 @@
-const projects = [
-    {
-        name: "default",
-
-    }
-]
-
-
-export default function Projects() {
-
-
-    function createProject(name) {
-        projects.push({ name })
-    }
-    return { projects, createProject }
-}
-
-class Project {
+export default class Project {
     constructor(name) {
         this.name = name
         this.taskList = []
+        this.taskListList = []
 
     }
 
@@ -27,5 +11,12 @@ class Project {
     }
     removeTask(taskId) {
         this.taskList = this.taskList.filter(task => task.id !== taskId)
+    }
+
+    addList(list) {
+        this.taskListList.push(list)
+    }
+    removeList(listId) {
+        this.taskListList = this.taskListList.filter(list => list.id !== listId)
     }
 }
