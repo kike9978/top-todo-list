@@ -1,4 +1,4 @@
-import Project from "./Project"
+/* import Project from "./Project"
 import Task from "./Task"
 
 const task = Task()
@@ -31,4 +31,5 @@ export default function SystemManager() {
     }
 
     return { filterTasksByProjects }
-}
+} */
+

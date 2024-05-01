@@ -16,3 +16,22 @@ export default function Task() {
 
     return { tasks, createTask }
 }
+
+export class Task {
+    constructor(name, description, dueDate, isImportant) {
+        this.name = name;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.isImportant = isImportant;
+        this.subTaskList = [];
+        this.status = false
+
+    }
+
+    toggleStatus() {
+        this.status = !this.status
+    }
+
+
+
+}

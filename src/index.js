@@ -1,20 +1,20 @@
-import "./styles/style.css"
+/* import "./styles/style.css"
 
-import Project from "./modules/Project"
-import Task from "./modules/Task"
-import SystemManager from "./modules/SystemManager"
+import Project from "./components/Project"
+import Task from "./components/Task"
+import SystemManager from "./components/App"
 
 const project = Project()
 const task = Task()
 const systemManager = SystemManager()
 
-/* console.log(project.projects) */
+console.log(project.projects) 
 
 project.createProject("🦐 Pompis")
-/* console.log(project.projects) */
+console.log(project.projects) 
 
 task.createTask("segunda tarea", "es la segunda tarea de prueba", "hoy", false, [])
-/* console.table(task.tasks) */
+console.table(task.tasks) 
 
 console.log(systemManager.filterTasksByProjects())
 
@@ -48,4 +48,13 @@ systemManager.filterTasksByProjects().forEach(entry => {
 
 
 const body = document.querySelector("body")
-body.appendChild(sideBar) 
+body.appendChild(sideBar)  */
+
+import TaskList from "./components/TaskList"
+
+const taskList = new TaskList("hola")
+
+taskList.addTask({ name: "hola", taskId: 2, status: true })
+
+console.log("pendientes: ", taskList.getPendingTasks())
+console.log("completadas: ", taskList.getCompletedTasks())
