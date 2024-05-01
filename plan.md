@@ -22,3 +22,64 @@
 - Formatear links
 - Cerrar ciertas "modales" con escape o click a fuera
 - Automácamente habilitar el campo de texto donde voy a escribir la tarea al darle al botón de crear una tarea
+
+
+What I need?
+
+- an storage manager
+- a project list manager
+- a list list manager
+- a task list manager
+- a system manager
+- a ui renderer
+- I need factory, modules just to create the items
+
+subtask module
+    titulo
+    tareaPadre
+
+    crud
+
+
+task module
+    titulo
+    due date
+    prioridad
+    subtareas
+    importante
+    descripción
+    project?
+
+    eliminar tarea
+    crear tarea
+    editar tarea
+    ver tarea
+
+list module
+    titulo
+    tasks[]
+
+    crud
+
+project module
+    titulo
+    lists[]
+    tasks[]
+
+    crud
+
+UIRenderer module
+    crud tasks panel
+        cards de tasks
+    crud task card
+        input
+        botónes
+        selects
+    crud task collection panel
+        details
+    modales de edición/ creación
+    panel de edición/creación
+        
+    
+
+
