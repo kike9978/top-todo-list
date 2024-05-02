@@ -23,6 +23,7 @@ export default class TaskService {
 
     deleteTask(taskId) {
         const tasks = this.getTasks();
+        console.log("id: " + taskId)
         const filteredTasks = tasks.filter(task => task.id !== taskId);
         tasksData[`"tasks"`] = JSON.stringify(filteredTasks)
     }

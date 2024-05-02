@@ -1,12 +1,18 @@
 import TaskService from "../services/TaskService"
 import TaskUI from "./ui/Task.ui"
+import Button from "./ui/Button"
+const taskService = new TaskService()
 
-function handleDeleteTask() {
-    const taskService = new TaskService()
-    taskService.deleteTask(1)
+
+
+
+function onDelete(taskId = 1) {
+    taskService.deleteTask(taskId);
+    reRenderTasks();
     console.log(taskService.readTasks())
-    reRenderTasks()
 }
+
+
 
 
 function reRenderTasks() {
@@ -18,9 +24,8 @@ function reRenderTasks() {
 
 function displayTasks() {
     const tasksSection = document.querySelector("section")
-    const taskService = new TaskService()
     taskService.readTasks().forEach(task => {
-        const taskUI = TaskUI(task)
+        const taskUI = TaskUI(task, onDelete)
         tasksSection.appendChild(taskUI)
     })
 
@@ -38,4 +43,4 @@ export default function UIRenderer() {
 
     return
 }
-export { handleDeleteTask, reRenderTasks, displayTasks, cleanTaskPanel }
+export { reRenderTasks, displayTasks, cleanTaskPanel }

@@ -1,9 +1,7 @@
 import Button from "./Button"
-import TaskService from "../../services/TaskService"
 import tasksData from "../../data/tasksData.json"
 
 
-const taskService = new TaskService();
 
 const styles = {
     article: ["border", "border-black", "border-solid", "rounded-sm"],

@@ -9,10 +9,10 @@ import TaskService from "./services/TaskService"
 
 import taskMockData from "./data/taskMockData.json"
 
-
-import TaskUI from "./components/ui/Task.ui"
 import Button from "./components/ui/Button"
-import { handleDeleteTask, reRenderTasks, displayTasks, cleanTaskPanel } from "./components/UIRenderer"
+import { reRenderTasks, displayTasks, cleanTaskPanel } from "./components/UIRenderer"
+
+import Modal from "./components/ui/Modal"
 
 
 
@@ -38,6 +38,7 @@ window.taskService = taskService
 
 body.appendChild(createTaskButton)
 body.appendChild(tasksSection)
+body.appendChild(Modal())
 
 
 newProjects.forEach(project => projectService.createProject(project))
@@ -45,19 +46,6 @@ newProjects.forEach(project => projectService.createProject(project))
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id)))
 
 
-/* function displayTasks() {
-    cleanTaskPanel()
-    taskService.readTasks().forEach(task => {
-        const taskUI = TaskUI(task)
-        tasksSection.appendChild(taskUI)
-    })
-
-} */
-
-/* function cleanTaskPanel() {
-    tasksSection.innerHTML = ""
-}
- */
 displayTasks()
 
 
@@ -68,6 +56,6 @@ taskService.readTasks().forEach(task => project.addTask(task))
 
 taskList.addTask({ name: "hola", taskId: 2, status: true })
 
-// console.log("pendientes: ", taskList.getPendingTasks())
-// console.log("completadas: ", taskList.getCompletedTasks())
+
+
 
