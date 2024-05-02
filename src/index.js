@@ -31,6 +31,14 @@ const createTaskButton = Button("Create Task", () => {
 })
 
 
+function handleTaskCreationFormSubmit(e) {
+
+    e.preventDefault()
+
+    const myformData = new FormData(e.target)
+    const formDataOjb = Object.fromEntries(myformData.entries())
+    console.log(formDataOjb)
+}
 
 window.projectService = projectService;
 window.taskListService = taskListService;
@@ -38,7 +46,7 @@ window.taskService = taskService
 
 body.appendChild(createTaskButton)
 body.appendChild(tasksSection)
-body.appendChild(Modal())
+body.appendChild(Modal(handleTaskCreationFormSubmit))
 
 
 newProjects.forEach(project => projectService.createProject(project))
