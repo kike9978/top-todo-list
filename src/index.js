@@ -47,7 +47,7 @@ body.appendChild(tasksSection)
 newProjects.forEach(project => projectService.createProject(project))
 // console.log(projectService.readProjects())
 
-taskData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant)))
+taskData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id)))
 
 // console.table(new Task(taskData[0].name, taskData[0].description, taskData[0].dueDate, taskData[0].isImportant))
 // console.table(tareasDivertidas)
