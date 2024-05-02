@@ -1,7 +1,7 @@
 export default class Tasklist {
-    constructor(name, projectId = 0) {
+    constructor(name, assignedProject = 0) {
         this.name = name
-        this.projectId = projectId
+        this.assignedProject = assignedProject
         this.tasks = []
 
     }

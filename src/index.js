@@ -3,6 +3,9 @@ import Project from "./components/Project"
 import Task from "./components/Task"
 import TaskList from "./components/TaskList"
 import ProjectService from "./services/ProjectService"
+import TaskListService from "./services/TaskListService"
+import TaskService from "./services/TaskService"
+
 
 const taskData = [
     { name: "tarea1", description: "mi descripción", dueDate: "mañana", isImportant: true },
@@ -15,6 +18,12 @@ const tareasDivertidas = []
 
 const newProjects = ["patucasa", "sabrosuraIntensa", "esquicites"]
 const projectService = new ProjectService()
+const taskListService = new TaskListService()
+const taskService = new TaskService()
+
+window.projectService = projectService;
+window.taskListService = taskListService;
+window.taskService = taskService
 
 newProjects.forEach(project => projectService.createProject(project))
 console.log(projectService.readProjects())

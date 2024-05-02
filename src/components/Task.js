@@ -18,11 +18,18 @@ export default class Task {
         this.status = !this.status
     }
 
-    assgignProject(projectId) {
+    assgignToProject(projectId) {
         this.project = projectId
     }
-    assgignTaskList(taskListId) {
+    assgignToTaskList(taskListId) {
         this.taskList = taskListId
+    }
+
+    removeFromProject() {
+        this.project = "";
+    }
+    removeFromTaskList() {
+        this.taskList = "";
     }
 
 }
