@@ -14,7 +14,7 @@ import { reRenderTasks, displayTasks, cleanTaskPanel } from "./components/UIRend
 
 import Modal from "./components/ui/Modal"
 
-
+const createTaskModal = Modal(handleTaskCreationFormSubmit)
 
 const body = document.querySelector("body")
 const tasksSection = document.createElement("section")
@@ -26,8 +26,7 @@ const taskService = new TaskService()
 
 
 const createTaskButton = Button("Create Task", () => {
-    taskService.createTask({ name: "tarea 5" })
-    reRenderTasks()
+    createTaskModal.showModal()
 })
 
 
@@ -38,6 +37,10 @@ function handleTaskCreationFormSubmit(e) {
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
     console.log(formDataOjb)
+    taskService.createTask({ name: "tarea 5" })
+    reRenderTasks()
+    createTaskModal.close()
+
 }
 
 window.projectService = projectService;
@@ -46,7 +49,7 @@ window.taskService = taskService
 
 body.appendChild(createTaskButton)
 body.appendChild(tasksSection)
-body.appendChild(Modal(handleTaskCreationFormSubmit))
+body.appendChild(createTaskModal)
 
 
 newProjects.forEach(project => projectService.createProject(project))

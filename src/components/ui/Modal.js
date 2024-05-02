@@ -15,7 +15,6 @@ export default function Modal(onSubmit) {
     dialog.classList.add(...styles.dialog)
     form.classList.add(...styles.form)
 
-    dialog.setAttribute("open", "")
 
 
     dialog.appendChild(form)
