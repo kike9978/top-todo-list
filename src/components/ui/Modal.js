@@ -24,7 +24,12 @@ export default function Modal(onSubmit) {
 
     button.innerText = "Crear tarea"
 
-    form.addEventListener("submit", onSubmit)
+    form.addEventListener("submit", (e) => {
+        onSubmit(e)
+        form.reset()
+        dialog.close()
+    }
+    )
 
     return dialog
 }

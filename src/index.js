@@ -39,7 +39,7 @@ function handleTaskCreationFormSubmit(e) {
     console.log(formDataOjb)
     taskService.createTask({ name: "tarea 5" })
     reRenderTasks()
-    createTaskModal.close()
+
 
 }
 
