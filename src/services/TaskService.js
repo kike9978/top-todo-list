@@ -6,11 +6,11 @@ export default class TaskService {
     createTask(task) {
         const tasks = this.getTasks();
         tasks.push(task)
-        tasksData[`"tasks"`] = JSON.stringify(tasks)
+        tasksData["tasks"] = JSON.stringify(tasks)
     }
 
     readTasks() {
-        const taskString = tasksData[`"tasks"`]
+        const taskString = tasksData["tasks"]
         return taskString ? JSON.parse(taskString) : []
     }
 
@@ -18,14 +18,14 @@ export default class TaskService {
         const tasks = this.getTasks()
         const taskIndex = tasks.findIndex(task => task.id === taskId);
         tasks[taskIndex] = updateTask;
-        tasksData[`"tasks"`] = JSON.stringify(tasks)
+        tasksData["tasks"] = JSON.stringify(tasks)
     }
 
     deleteTask(taskId) {
         const tasks = this.getTasks();
         console.log("id: " + taskId)
         const filteredTasks = tasks.filter(task => task.id !== taskId);
-        tasksData[`"tasks"`] = JSON.stringify(filteredTasks)
+        tasksData["tasks"] = JSON.stringify(filteredTasks)
     }
 
     getTasks() {

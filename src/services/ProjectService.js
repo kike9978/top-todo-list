@@ -6,7 +6,7 @@ export default class ProjectService {
     createProject(project) {
         const projects = this.getProjects();
         projects.push(project)
-        tasksData[`"projects"`] = JSON.stringify(projects)
+        tasksData["projects"] = JSON.stringify(projects)
     }
 
     readProjects() {
@@ -18,13 +18,13 @@ export default class ProjectService {
         const projects = this.getProjects()
         const projectIndex = projects.findIndex(project => project.id === projectId);
         projects[projectIndex] = updateProject;
-        tasksData[`"projects"`] = JSON.stringify(projects)
+        tasksData["projects"] = JSON.stringify(projects)
     }
 
     deleteProject(projectId) {
         const projects = this.getProjects();
         const filteredProjects = projects.filter(project => project.id !== projectId);
-        tasksData[`"projects"`] = JSON.stringify(filteredProjects)
+        tasksData["projects"] = JSON.stringify(filteredProjects)
     }
 
     getProjects() {

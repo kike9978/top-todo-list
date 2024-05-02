@@ -8,9 +8,11 @@ import TaskListService from "./services/TaskListService"
 import TaskService from "./services/TaskService"
 
 import taskMockData from "./data/taskMockData.json"
+import projectMockData from "./data/projectMockData.json"
+
 
 import Button from "./components/ui/Button"
-import { reRenderTasks, displayTasks, cleanTaskPanel } from "./components/UIRenderer"
+import { reRenderTasks, displayTasks, displayProjects } from "./components/UIRenderer"
 
 import Modal from "./components/ui/Modal"
 
@@ -18,8 +20,9 @@ const createTaskModal = Modal(handleTaskCreationFormSubmit)
 
 const body = document.querySelector("body")
 const tasksSection = document.createElement("section")
+const projectSection = document.createElement("section")
 
-const newProjects = ["patucasa", "sabrosuraIntensa", "esquicités"]
+
 const projectService = new ProjectService()
 const taskListService = new TaskListService()
 const taskService = new TaskService()
@@ -48,25 +51,27 @@ window.taskListService = taskListService;
 window.taskService = taskService
 
 body.appendChild(createTaskButton)
+body.appendChild(projectSection)
 body.appendChild(tasksSection)
 body.appendChild(createTaskModal)
 
 
-newProjects.forEach(project => projectService.createProject(project))
 
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id, task.isCompleted)))
-
+projectMockData.forEach(project => projectService.createProject(new Project(project.name)));
 
 displayTasks()
-
-
-const taskList = new TaskList("hola")
-const project = new Project("Proyecto")
-
-taskService.readTasks().forEach(task => project.addTask(task))
-
-taskList.addTask({ name: "hola", taskId: 2, status: true })
+displayProjects(projectSection)
 
 
 
 
+/* taskService.readTasks().forEach(task => project.addTask(task)) */
+
+/* taskList.addTask({ name: "hola", taskId: 2, status: true }) */
+
+
+
+console.log(projectService.readProjects())
+console.log(projectService.readProjects()[0])
+projectService.readProjects()[0].addTask("holi")

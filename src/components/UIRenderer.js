@@ -1,12 +1,21 @@
 import TaskService from "../services/TaskService"
+import ProjectService from "../services/ProjectService"
 import TaskUI from "./ui/Task.ui"
+import ProjectUI from "./ui/Project.ui"
 import Button from "./ui/Button"
 const taskService = new TaskService()
+const projectService = new ProjectService()
 
 
+function displayProjects(projectSection) {
+    projectService.readProjects().forEach(project => {
+        const projectUI = ProjectUI(project)
+        projectSection.appendChild(projectUI)
+    })
 
+}
 
-function onDelete(taskId) {
+function handleCreateTask(taskId) {
     taskService.deleteTask(taskId);
     reRenderTasks();
     console.log(taskService.readTasks())
@@ -25,7 +34,7 @@ function reRenderTasks() {
 function displayTasks() {
     const tasksSection = document.querySelector("section")
     taskService.readTasks().forEach(task => {
-        const taskUI = TaskUI(task, onDelete)
+        const taskUI = TaskUI(task, handleCreateTask)
         tasksSection.appendChild(taskUI)
     })
 
@@ -43,4 +52,4 @@ export default function UIRenderer() {
 
     return
 }
-export { reRenderTasks, displayTasks, cleanTaskPanel }
+export { reRenderTasks, displayTasks, cleanTaskPanel, displayProjects }

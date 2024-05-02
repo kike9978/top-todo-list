@@ -1,8 +1,11 @@
+import generateUniqueId from "../utils/generateUniqueId"
+
 export default class Project {
     constructor(name) {
         this.name = name
         this.taskList = []
         this.taskListList = []
+        this.id = generateUniqueId()
 
     }
 
