@@ -1,16 +1,10 @@
 import Button from "./Button"
-import tasksData from "../../data/tasksData.json"
-
-
 
 const styles = {
     article: ["border", "border-black", "border-solid", "rounded-sm"],
     h2: ["text-2xl", "font-bold"],
     buttonContainer: ["flex", "gap-2"]
 }
-
-
-
 
 export default function TaskUI(task, onDelete) {
 
@@ -19,6 +13,7 @@ export default function TaskUI(task, onDelete) {
     const nameInput = document.createElement("input")
     const description = document.createElement("p")
     const buttonContainer = document.createElement("div")
+    const completeCheck = document.createElement("input")
 
     const editButton = Button("Edit");
     const deleteButton = Button("Delete", () => onDelete(task.id));
@@ -30,10 +25,14 @@ export default function TaskUI(task, onDelete) {
     buttonContainer.classList.add(...styles.buttonContainer)
 
     article.appendChild(h2)
-    article.appendChild(description)
+    if (task.description) {
+
+        article.appendChild(description)
+    }
     article.appendChild(editButton)
     article.appendChild(deleteButton)
     article.appendChild(buttonContainer)
+    article.appendChild(completeCheck)
 
     h2.appendChild(nameInput)
 
@@ -42,6 +41,11 @@ export default function TaskUI(task, onDelete) {
 
     nameInput.setAttribute("value", task.name)
     description.innerText = task.description
+    completeCheck.setAttribute("type", "checkbox")
+
+    if (task.isCompleted) {
+        completeCheck.setAttribute("checked", "")
+    }
 
     return article
 

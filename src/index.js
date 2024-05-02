@@ -54,7 +54,7 @@ body.appendChild(createTaskModal)
 
 newProjects.forEach(project => projectService.createProject(project))
 
-taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id)))
+taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id, task.isCompleted)))
 
 
 displayTasks()

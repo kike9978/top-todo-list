@@ -11,7 +11,8 @@
         "id": 2,
         "description": "mi descripción",
         "dueDate": "mañana",
-        "isImportant": true
+        "isImportant": true,
+        "isCompleted": true
     },
     {
         "name": "tarea3",

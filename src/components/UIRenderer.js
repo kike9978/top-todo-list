@@ -6,7 +6,7 @@ const taskService = new TaskService()
 
 
 
-function onDelete(taskId = 1) {
+function onDelete(taskId) {
     taskService.deleteTask(taskId);
     reRenderTasks();
     console.log(taskService.readTasks())

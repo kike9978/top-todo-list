@@ -2,13 +2,13 @@
 
 
 export default class Task {
-    constructor(name, description, dueDate, isImportant, id) {
+    constructor(name, description, dueDate, isImportant, id, isCompleted = false) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.isImportant = isImportant;
         this.subTaskList = [];
-        this.status = false;
+        this.isCompleted = isCompleted;
         this.project = "";
         this.taskList = "";
         this.id = id
@@ -16,7 +16,7 @@ export default class Task {
     }
 
     toggleStatus() {
-        this.status = !this.status
+        this.isCompleted = !this.isCompleted
     }
 
     assgignProject(projectId) {
