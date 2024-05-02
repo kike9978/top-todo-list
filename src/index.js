@@ -37,7 +37,7 @@ function handleTaskCreationFormSubmit(e) {
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
     console.log(formDataOjb)
-    taskService.createTask({ name: "tarea 5" })
+    taskService.createTask({ name: formDataOjb.task })
     reRenderTasks()
 
 
