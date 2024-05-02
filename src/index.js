@@ -12,13 +12,12 @@ import Button from "./components/ui/Button"
 
 
 const taskData = [
-    { name: "tarea1", description: "mi descripción", dueDate: "mañana", isImportant: true },
-    { name: "tarea2", description: "mi descripción", dueDate: "mañana", isImportant: true },
-    { name: "tarea3", description: "mi descripción", dueDate: "mañana", isImportant: true },
-    { name: "tarea4", description: "mi descripción", dueDate: "mañana", isImportant: true },
+    { name: "tarea1", id: 1, description: "mi descripción", dueDate: "mañana", isImportant: true },
+    { name: "tarea2", id: 2, description: "mi descripción", dueDate: "mañana", isImportant: true },
+    { name: "tarea3", id: 3, description: "mi descripción", dueDate: "mañana", isImportant: true },
+    { name: "tarea4", id: 4, description: "mi descripción", dueDate: "mañana", isImportant: true },
 
 ]
-const tareasDivertidas = []
 
 
 const body = document.querySelector("body")
@@ -32,8 +31,10 @@ const taskService = new TaskService()
 
 const createTaskButton = Button("Create Task", () => {
     taskService.createTask({ name: "tarea 5" })
-    diplayTasks()
+    displayTasks()
 })
+
+
 
 window.projectService = projectService;
 window.taskListService = taskListService;
@@ -46,14 +47,14 @@ body.appendChild(tasksSection)
 newProjects.forEach(project => projectService.createProject(project))
 // console.log(projectService.readProjects())
 
-taskData.forEach(task => tareasDivertidas.push(new Task(task.name, task.description, task.dueDate, task.isImportant)))
+taskData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant)))
 
 // console.table(new Task(taskData[0].name, taskData[0].description, taskData[0].dueDate, taskData[0].isImportant))
 // console.table(tareasDivertidas)
 
-function diplayTasks() {
+function displayTasks() {
     cleanTaskPanel()
-    tareasDivertidas.forEach(task => {
+    taskService.readTasks().forEach(task => {
         const taskUI = TaskUI(task)
         tasksSection.appendChild(taskUI)
     })
@@ -64,13 +65,13 @@ function cleanTaskPanel() {
     tasksSection.innerHTML = ""
 }
 
-diplayTasks()
+displayTasks()
 
 
 const taskList = new TaskList("hola")
 const project = new Project("Proyecto")
 
-tareasDivertidas.forEach(task => project.addTask(task))
+taskService.readTasks().forEach(task => project.addTask(task))
 
 taskList.addTask({ name: "hola", taskId: 2, status: true })
 
