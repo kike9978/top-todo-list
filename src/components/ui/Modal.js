@@ -9,6 +9,7 @@ export default function Modal() {
     dialog.classList.add("border", "border-solid", "border-black")
 
     dialog.setAttribute("open", "")
+    input.setAttribute("name", "test")
 
     dialog.appendChild(form)
     form.appendChild(input)
@@ -18,7 +19,11 @@ export default function Modal() {
 
     form.addEventListener("submit", (e) => {
         e.preventDefault()
-        console.log("Me apretaste")
+
+        const myformData = new FormData(e.target)
+        const formDataOjb = Object.fromEntries(myformData.entries())
+        console.log(formDataOjb)
+
 
     })
 
