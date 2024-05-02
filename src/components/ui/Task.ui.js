@@ -1,5 +1,7 @@
 import Button from "./Button"
 import TaskService from "../../services/TaskService"
+import tasksData from "../../data/tasksData.json"
+
 
 const taskService = new TaskService();
 
@@ -9,15 +11,10 @@ const styles = {
     buttonContainer: ["flex", "gap-2"]
 }
 
-function handleDeleteTask() {
-    console.log(taskService.readTasks())
-    taskService.deleteTask(1)
-    console.log(taskService.readTasks())
-}
 
 
 
-export default function TaskUI(task) {
+export default function TaskUI(task, onDelete) {
 
     const article = document.createElement("article")
     const h2 = document.createElement("h2")
@@ -26,7 +23,7 @@ export default function TaskUI(task) {
     const buttonContainer = document.createElement("div")
 
     const editButton = Button("Edit");
-    const deleteButton = Button("Delete", handleDeleteTask);
+    const deleteButton = Button("Delete", () => onDelete(task.id));
 
 
 

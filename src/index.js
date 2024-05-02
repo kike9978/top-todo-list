@@ -7,17 +7,13 @@ import ProjectService from "./services/ProjectService"
 import TaskListService from "./services/TaskListService"
 import TaskService from "./services/TaskService"
 
+import taskMockData from "./data/taskMockData.json"
+
+
 import TaskUI from "./components/ui/Task.ui"
 import Button from "./components/ui/Button"
+import { handleDeleteTask, reRenderTasks, displayTasks, cleanTaskPanel } from "./components/UIRenderer"
 
-
-const taskData = [
-    { name: "tarea1", id: 1, description: "mi descripción", dueDate: "mañana", isImportant: true },
-    { name: "tarea2", id: 2, description: "mi descripción", dueDate: "mañana", isImportant: true },
-    { name: "tarea3", id: 3, description: "mi descripción", dueDate: "mañana", isImportant: true },
-    { name: "tarea4", id: 4, description: "mi descripción", dueDate: "mañana", isImportant: true },
-
-]
 
 
 const body = document.querySelector("body")
@@ -31,7 +27,7 @@ const taskService = new TaskService()
 
 const createTaskButton = Button("Create Task", () => {
     taskService.createTask({ name: "tarea 5" })
-    displayTasks()
+    reRenderTasks()
 })
 
 
@@ -45,26 +41,23 @@ body.appendChild(tasksSection)
 
 
 newProjects.forEach(project => projectService.createProject(project))
-// console.log(projectService.readProjects())
 
-taskData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id)))
+taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id)))
 
-// console.table(new Task(taskData[0].name, taskData[0].description, taskData[0].dueDate, taskData[0].isImportant))
-// console.table(tareasDivertidas)
 
-function displayTasks() {
+/* function displayTasks() {
     cleanTaskPanel()
     taskService.readTasks().forEach(task => {
         const taskUI = TaskUI(task)
         tasksSection.appendChild(taskUI)
     })
 
-}
+} */
 
-function cleanTaskPanel() {
+/* function cleanTaskPanel() {
     tasksSection.innerHTML = ""
 }
-
+ */
 displayTasks()
 
 

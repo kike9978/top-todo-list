@@ -1,0 +1,30 @@
+[
+    {
+        "name": "tarea1",
+        "id": 1,
+        "description": "mi descripción",
+        "dueDate": "mañana",
+        "isImportant": true
+    },
+    {
+        "name": "tarea2",
+        "id": 2,
+        "description": "mi descripción",
+        "dueDate": "mañana",
+        "isImportant": true
+    },
+    {
+        "name": "tarea3",
+        "id": 3,
+        "description": "mi descripción",
+        "dueDate": "mañana",
+        "isImportant": true
+    },
+    {
+        "name": "tarea4",
+        "id": 4,
+        "description": "mi descripción",
+        "dueDate": "mañana",
+        "isImportant": true
+    }
+]
