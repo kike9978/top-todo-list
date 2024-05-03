@@ -1,7 +1,7 @@
 import Button from "./Button"
 
 const styles = {
-    article: ["border", "border-black", "border-solid", "rounded-sm"],
+    article: ["border", "border-black", "border-solid", "rounded-sm", "p-2"],
     h2: ["text-2xl", "font-bold"],
     buttonContainer: ["flex", "gap-2"]
 }

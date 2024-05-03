@@ -1,12 +1,16 @@
 export default function ProjectUI(project) {
-    const article = document.createElement("article")
-    const h3 = document.createElement("h3")
+    const details = document.createElement("details")
+    const summary = document.createElement("summary")
 
 
+    summary.innerText = project.name
+    details.appendChild(summary)
 
-    h3.innerText = project.name
+    project.taskList.forEach(task => {
+        const p = document.createElement("p")
+        p.innerText = task
+        details.appendChild(p)
+    })
 
-    article.appendChild(h3)
-
-    return article
+    return details
 }

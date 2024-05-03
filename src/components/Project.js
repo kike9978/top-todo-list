@@ -2,7 +2,7 @@
 export default class Project {
     constructor(name, id) {
         this.name = name
-        this.taskList = []
+        this.taskList = ["holi", "caroli"]
         this.taskListList = []
         this.id = id
 

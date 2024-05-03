@@ -35,7 +35,7 @@ function reRenderTasks() {
 function displayTasks() {
     const tasksSection = document.querySelector("#tasks-section")
     taskService.readTasks().forEach(task => {
-        const taskUI = TaskUI(task, handleDeleteTask)
+        const taskUI = TaskUI(task, () => handleDeleteTask(task.id))
         tasksSection.appendChild(taskUI)
     })
 
