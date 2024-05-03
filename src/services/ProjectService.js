@@ -2,7 +2,6 @@ import tasksData from "../data/tasksData.json"
 
 export default class ProjectService {
 
-
     createProject(project) {
         const projects = this.getProjects();
         projects.push(project)

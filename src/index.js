@@ -10,6 +10,9 @@ import TaskService from "./services/TaskService"
 import taskMockData from "./data/taskMockData.json"
 import projectMockData from "./data/projectMockData.json"
 
+import generateUniqueId from "./utils/generateUniqueId"
+
+
 
 import Button from "./components/ui/Button"
 import { reRenderTasks, displayTasks, displayProjects } from "./components/UIRenderer"
@@ -58,7 +61,7 @@ body.appendChild(createTaskModal)
 
 
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id, task.isCompleted)))
-projectMockData.forEach(project => projectService.createProject(new Project(project.name)));
+projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId())));
 
 displayTasks()
 displayProjects(projectSection)
@@ -73,5 +76,7 @@ displayProjects(projectSection)
 
 
 console.log(projectService.readProjects())
+console.log(projectService.readProjects()[0].id)
+new Project(projectService.readProjects()[0].name, projectService.readProjects()[0].id).addTask("holi")
 console.log(projectService.readProjects()[0])
-projectService.readProjects()[0].addTask("holi")
+
