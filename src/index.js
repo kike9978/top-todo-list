@@ -43,8 +43,8 @@ function handleTaskCreationFormSubmit(e) {
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
     console.log(formDataOjb)
-    taskService.createTask({ name: formDataOjb.task })
-    reRenderTasks()
+    taskService.createTask({ name: formDataOjb.task, description: formDataOjb.description })
+    reRenderTasks(tasksSection)
 
 
 }
@@ -63,8 +63,9 @@ body.appendChild(createTaskModal)
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id, task.isCompleted)))
 projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId())));
 
-displayTasks()
+displayTasks(tasksSection)
 displayProjects(projectSection)
+
 
 
 

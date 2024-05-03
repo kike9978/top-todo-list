@@ -24,15 +24,14 @@ function handleCreateTask(taskId) {
 
 
 
-function reRenderTasks() {
-    cleanTaskPanel()
-    displayTasks()
+function reRenderTasks(tasksSection) {
+    cleanTaskPanel(tasksSection)
+    displayTasks(tasksSection)
 
 
 }
 
-function displayTasks() {
-    const tasksSection = document.querySelector("section")
+function displayTasks(tasksSection) {
     taskService.readTasks().forEach(task => {
         const taskUI = TaskUI(task, handleCreateTask)
         tasksSection.appendChild(taskUI)
@@ -40,8 +39,7 @@ function displayTasks() {
 
 }
 
-function cleanTaskPanel() {
-    const tasksSection = document.querySelector("section")
+function cleanTaskPanel(tasksSection) {
     tasksSection.innerHTML = ""
 }
 
