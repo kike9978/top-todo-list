@@ -15,7 +15,8 @@ function displayProjects(projectSection) {
 
 }
 
-function handleCreateTask(taskId) {
+function handleDeleteTask(taskId) {
+
     taskService.deleteTask(taskId);
     reRenderTasks();
     console.log(taskService.readTasks())
@@ -24,22 +25,24 @@ function handleCreateTask(taskId) {
 
 
 
-function reRenderTasks(tasksSection) {
-    cleanTaskPanel(tasksSection)
-    displayTasks(tasksSection)
+function reRenderTasks() {
+    cleanTaskPanel()
+    displayTasks()
 
 
 }
 
-function displayTasks(tasksSection) {
+function displayTasks() {
+    const tasksSection = document.querySelector("#tasks-section")
     taskService.readTasks().forEach(task => {
-        const taskUI = TaskUI(task, handleCreateTask)
+        const taskUI = TaskUI(task, handleDeleteTask)
         tasksSection.appendChild(taskUI)
     })
 
 }
 
-function cleanTaskPanel(tasksSection) {
+function cleanTaskPanel() {
+    const tasksSection = document.querySelector("#tasks-section")
     tasksSection.innerHTML = ""
 }
 

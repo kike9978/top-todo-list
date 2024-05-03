@@ -25,6 +25,7 @@ const body = document.querySelector("body")
 const tasksSection = document.createElement("section")
 const projectSection = document.createElement("section")
 
+tasksSection.id = "tasks-section"
 
 const projectService = new ProjectService()
 const taskListService = new TaskListService()
@@ -63,7 +64,7 @@ body.appendChild(createTaskModal)
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, task.id, task.isCompleted)))
 projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId())));
 
-displayTasks(tasksSection)
+displayTasks()
 displayProjects(projectSection)
 
 
