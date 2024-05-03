@@ -2,6 +2,15 @@ import tasksData from "../data/tasksData.json"
 
 export default class TaskService {
 
+    getFilteredTasks() {
+        const tasks = this.getTasks();
+        const filteredTasks = []
+        const pendingTasks = tasks.filter(task => !task.isCompleted)
+        const completedTasks = tasks.filter(task => task.isCompleted)
+        filteredTasks.push(...pendingTasks)
+        filteredTasks.push(...completedTasks)
+        return filteredTasks
+    }
 
     createTask(task) {
         const tasks = this.getTasks();
