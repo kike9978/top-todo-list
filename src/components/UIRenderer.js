@@ -22,6 +22,15 @@ function handleDeleteTask(taskId) {
     console.log(taskService.readTasks())
 }
 
+function handleCompleteTask(taskId) {
+    /* get task by id */
+    /* get value of the check */
+    /* switch isCompleted value */
+    /* taskService.updateTask(taskId,) */
+    /* update ui */
+    console.log("hola")
+}
+
 
 
 
@@ -35,7 +44,7 @@ function reRenderTasks() {
 function displayTasks() {
     const tasksSection = document.querySelector("#tasks-section")
     taskService.getFilteredTasks().forEach(task => {
-        const taskUI = TaskUI(task, () => handleDeleteTask(task.id))
+        const taskUI = TaskUI(task, () => handleDeleteTask(task.id), () => handleCompleteTask(task.id))
         tasksSection.appendChild(taskUI)
     })
 

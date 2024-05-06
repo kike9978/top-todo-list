@@ -56,7 +56,7 @@ body.appendChild(tasksSection)
 body.appendChild(createTaskModal)
 
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted)))
-projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId())));
+projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.color)));
 
 displayTasks()
 displayProjects(projectSection)

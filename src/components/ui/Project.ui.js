@@ -11,6 +11,7 @@ export default function ProjectUI(project) {
         p.innerText = task
         details.appendChild(p)
     })
+    details.style.backgroundColor = project.color
 
     return details
 }

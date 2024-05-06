@@ -6,7 +6,7 @@ const styles = {
     buttonContainer: ["flex", "gap-2"]
 }
 
-export default function TaskUI(task, onDelete) {
+export default function TaskUI(task, onDelete, onChange) {
 
     const article = document.createElement("article")
     const h2 = document.createElement("h2")
@@ -16,7 +16,8 @@ export default function TaskUI(task, onDelete) {
     const completeCheck = document.createElement("input")
 
     const editButton = Button("Edit");
-    const deleteButton = Button("Delete", () => onDelete(task.id));
+    const deleteButton = Button("Delete", () => onDelete());
+    completeCheck.addEventListener("change", () => onChange())
 
 
 

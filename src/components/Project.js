@@ -1,10 +1,10 @@
-
 export default class Project {
-    constructor(name, id) {
+    constructor(name, id, color = "#fff") {
         this.name = name
         this.taskList = ["holi", "caroli"]
         this.taskListList = []
         this.id = id
+        this.color = color
 
     }
 

@@ -22,6 +22,7 @@
 - Formatear links
 - Cerrar ciertas "modales" con escape o click a fuera
 - Automácamente habilitar el campo de texto donde voy a escribir la tarea al darle al botón de crear una tarea
+- Darle color a los proyectos
 
 
 What I need?
