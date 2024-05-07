@@ -23,11 +23,18 @@ export default class TaskService {
         return taskString ? JSON.parse(taskString) : []
     }
 
-    updateTask(taskId, updateTask) {
+    updateTask(taskId, update) {
         const tasks = this.getTasks()
         const taskIndex = tasks.findIndex(task => task.id === taskId);
-        tasks[taskIndex] = updateTask;
-        tasksData["tasks"] = JSON.stringify(tasks)
+
+        if (taskIndex !== -1) {
+
+            tasks[taskIndex] = { ...tasks[taskIndex], ...update };
+            tasksData["tasks"] = JSON.stringify(tasks)
+        } else {
+            console.error(`Task with ID ${taskId} not found.`);
+        }
+
     }
 
     deleteTask(taskId) {
@@ -41,10 +48,7 @@ export default class TaskService {
         return this.readTasks()
     }
 
-    updateTaskStatus(taskId) {
-        const tasks = this.getTasks()
-        const taskIndex = tasks.findIndex(task => task.id === taskId);
-        tasks[taskIndex].isCompleted = !tasks[taskIndex].isCompleted;
-        tasksData["tasks"] = JSON.stringify(tasks)
+    readSingleTask(taskId) {
+        return this.getTasks().find(task => task.id === taskId)
     }
 }

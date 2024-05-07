@@ -3,10 +3,11 @@ import Button from "./Button"
 const styles = {
     article: ["border", "border-black", "border-solid", "rounded-sm", "p-2"],
     h2: ["text-2xl", "font-bold"],
-    buttonContainer: ["flex", "gap-2"]
+    buttonContainer: ["flex", "gap-2"],
+    updateNameButton: ["hidden"]
 }
 
-export default function TaskUI(task, onDelete, onChange) {
+export default function TaskUI(task, onDelete, onChange, onNameSubmit) {
 
     const article = document.createElement("article")
     const h2 = document.createElement("h2")
@@ -14,18 +15,31 @@ export default function TaskUI(task, onDelete, onChange) {
     const description = document.createElement("p")
     const buttonContainer = document.createElement("div")
     const completeCheck = document.createElement("input")
+    const form = document.createElement("form")
+    const updateNameButton = document.createElement("button")
+
+    //Events
 
     const editButton = Button("Edit");
     const deleteButton = Button("Delete", () => onDelete());
     completeCheck.addEventListener("change", () => onChange())
+    form.addEventListener("submit", onNameSubmit)
 
 
+
+    //Styles
 
     article.classList.add(...styles.article)
     h2.classList.add(...styles.h2)
     buttonContainer.classList.add(...styles.buttonContainer)
+    updateNameButton.classList.add(...styles.updateNameButton)
 
-    article.appendChild(h2)
+
+    //Child appending
+
+    article.appendChild(form)
+    form.appendChild(h2)
+    form.appendChild(updateNameButton)
     if (task.description) {
 
         article.appendChild(description)
@@ -40,6 +54,9 @@ export default function TaskUI(task, onDelete, onChange) {
     buttonContainer.appendChild(editButton)
     buttonContainer.appendChild(deleteButton)
 
+    //Attributes
+
+    nameInput.setAttribute("name", "taskName")
     nameInput.setAttribute("value", task.name)
     description.innerText = task.description
     completeCheck.setAttribute("type", "checkbox")

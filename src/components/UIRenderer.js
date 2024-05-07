@@ -23,18 +23,25 @@ function handleDeleteTask(taskId) {
 }
 
 function handleCompleteTask(taskId) {
-    taskService.updateTaskStatus(taskId)
+    const updatedStatus = !taskService.readSingleTask(taskId).isCompleted
+    console.log(updatedStatus)
+    taskService.updateTask(taskId, { isCompleted: updatedStatus })
     reRenderTasks()
-
-    /* get task by id */
-    /* get value of the check */
-    /* switch isCompleted value */
-    /* taskService.updateTask(taskId,) */
-    /* update ui */
-    console.log("hola")
 }
 
+function handleUpdateTaskName(e, taskId) {
+    e.preventDefault()
 
+    const myformData = new FormData(e.target)
+    const formDataOjb = Object.fromEntries(myformData.entries())
+    console.log(formDataOjb)
+    console.log("hola")
+    taskService.updateTask(taskId)
+    reRenderTasks()
+
+
+
+}
 
 
 function reRenderTasks() {
@@ -47,7 +54,7 @@ function reRenderTasks() {
 function displayTasks() {
     const tasksSection = document.querySelector("#tasks-section")
     taskService.getFilteredTasks().forEach(task => {
-        const taskUI = TaskUI(task, () => handleDeleteTask(task.id), () => handleCompleteTask(task.id))
+        const taskUI = TaskUI(task, () => handleDeleteTask(task.id), () => handleCompleteTask(task.id), (e) => handleUpdateTaskName(e, task.id))
         tasksSection.appendChild(taskUI)
     })
 
