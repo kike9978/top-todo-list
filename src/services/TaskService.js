@@ -40,4 +40,11 @@ export default class TaskService {
     getTasks() {
         return this.readTasks()
     }
+
+    updateTaskStatus(taskId) {
+        const tasks = this.getTasks()
+        const taskIndex = tasks.findIndex(task => task.id === taskId);
+        tasks[taskIndex].isCompleted = !tasks[taskIndex].isCompleted;
+        tasksData["tasks"] = JSON.stringify(tasks)
+    }
 }

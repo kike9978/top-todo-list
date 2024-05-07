@@ -23,6 +23,9 @@ function handleDeleteTask(taskId) {
 }
 
 function handleCompleteTask(taskId) {
+    taskService.updateTaskStatus(taskId)
+    reRenderTasks()
+
     /* get task by id */
     /* get value of the check */
     /* switch isCompleted value */
