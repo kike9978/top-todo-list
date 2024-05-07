@@ -36,7 +36,7 @@ function handleUpdateTaskName(e, taskId) {
     const formDataOjb = Object.fromEntries(myformData.entries())
     console.log(formDataOjb)
     console.log("hola")
-    taskService.updateTask(taskId)
+    taskService.updateTask(taskId, { name: formDataOjb.taskName })
     reRenderTasks()
 
 
