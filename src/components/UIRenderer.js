@@ -22,8 +22,12 @@ function displayTaskLists(taskListSection) {
     const fragment = document.createDocumentFragment()
     taskListService.readTaskLists().forEach(taskList => {
         const p = document.createElement("p")
+        const id = document.createElement("p")
         p.innerText = taskList.name
+        id.innerText = taskList.id
+
         fragment.appendChild(p)
+        fragment.appendChild(id)
     })
     taskListSection.appendChild(fragment)
 }
