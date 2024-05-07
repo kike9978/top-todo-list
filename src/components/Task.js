@@ -2,7 +2,7 @@
 
 
 export default class Task {
-    constructor(name, description, dueDate, isImportant, id, isCompleted = false) {
+    constructor(name, description, dueDate, isImportant, id, isCompleted = false, taskListId) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
@@ -10,7 +10,7 @@ export default class Task {
         this.subTaskList = [];
         this.isCompleted = isCompleted;
         this.project = "";
-        this.taskList = "";
+        this.taskListId = taskListId;
         this.id = id
 
     }

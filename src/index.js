@@ -16,6 +16,8 @@ import generateUniqueId from "./utils/generateUniqueId"
 import Button from "./components/ui/Button"
 import { reRenderTasks, displayTasks, displayProjects, displayTaskLists } from "./components/UIRenderer"
 
+import taskListsIds, { consoleTest } from "./data/taskListsIds"
+
 import Modal from "./components/ui/Modal"
 
 const createTaskModal = Modal(handleTaskCreationFormSubmit)
@@ -63,11 +65,15 @@ main.appendChild(taskListSection)
 main.appendChild(tasksSection)
 body.appendChild(createTaskModal)
 
-taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted)))
-projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.color)));
-listsMockData.forEach(list => taskListService.createTaskList(new TaskList(list.name, 0, generateUniqueId())))
+
+console.log(taskListsIds)
+
+taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted, taskListsIds[0])))
+projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.color, taskListsIds)));
+listsMockData.forEach(list => taskListService.createTaskList(new TaskList(list.name, "", generateUniqueId())))
 
 displayTasks()
 displayProjects(projectSection)
 displayTaskLists(taskListSection)
 
+consoleTest()

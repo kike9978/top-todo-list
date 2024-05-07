@@ -18,6 +18,7 @@ export default function TaskUI(task, onDelete, onChange, onNameSubmit) {
     const completeCheck = document.createElement("input")
     const form = document.createElement("form")
     const updateNameButton = document.createElement("button")
+    const taskListId = document.createElement("p")
 
     //Events
 
@@ -50,6 +51,7 @@ export default function TaskUI(task, onDelete, onChange, onNameSubmit) {
     article.appendChild(deleteButton)
     article.appendChild(buttonContainer)
     article.appendChild(completeCheck)
+    article.appendChild(taskListId)
 
     h2.appendChild(nameInput)
 
@@ -62,6 +64,7 @@ export default function TaskUI(task, onDelete, onChange, onNameSubmit) {
     nameInput.setAttribute("value", task.name)
     description.innerText = task.description
     completeCheck.setAttribute("type", "checkbox")
+    taskListId.innerText = task.taskListId
 
     if (task.isCompleted) {
         completeCheck.setAttribute("checked", "")
