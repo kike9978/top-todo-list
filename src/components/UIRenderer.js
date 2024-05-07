@@ -19,12 +19,10 @@ function handleDeleteTask(taskId) {
 
     taskService.deleteTask(taskId);
     reRenderTasks();
-    console.log(taskService.readTasks())
 }
 
 function handleCompleteTask(taskId) {
     const updatedStatus = !taskService.readSingleTask(taskId).isCompleted
-    console.log(updatedStatus)
     taskService.updateTask(taskId, { isCompleted: updatedStatus })
     reRenderTasks()
 }
@@ -34,8 +32,6 @@ function handleUpdateTaskName(e, taskId) {
 
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
-    console.log(formDataOjb)
-    console.log("hola")
     taskService.updateTask(taskId, { name: formDataOjb.taskName })
     reRenderTasks()
 
