@@ -9,11 +9,12 @@ import TaskService from "./services/TaskService"
 
 import taskMockData from "./data/taskMockData.json"
 import projectMockData from "./data/projectMockData.json"
+import listsMockData from "./data/listsMockData.json"
 
 import generateUniqueId from "./utils/generateUniqueId"
 
 import Button from "./components/ui/Button"
-import { reRenderTasks, displayTasks, displayProjects } from "./components/UIRenderer"
+import { reRenderTasks, displayTasks, displayProjects, displayTaskLists } from "./components/UIRenderer"
 
 import Modal from "./components/ui/Modal"
 
@@ -22,6 +23,13 @@ const createTaskModal = Modal(handleTaskCreationFormSubmit)
 const body = document.querySelector("body")
 const tasksSection = document.createElement("section")
 const projectSection = document.createElement("section")
+const taskListSection = document.createElement("section")
+
+const main = document.createElement("main")
+
+const styles = {
+    main: ["flex"]
+}
 
 tasksSection.id = "tasks-section"
 
@@ -46,23 +54,20 @@ function handleTaskCreationFormSubmit(e) {
 
 }
 
-window.projectService = projectService;
-window.taskListService = taskListService;
-window.taskService = taskService
+main.classList.add(...styles.main)
 
 body.appendChild(createTaskButton)
-body.appendChild(projectSection)
-body.appendChild(tasksSection)
+body.appendChild(main)
+main.appendChild(projectSection)
+main.appendChild(taskListSection)
+main.appendChild(tasksSection)
 body.appendChild(createTaskModal)
 
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted)))
 projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.color)));
+listsMockData.forEach(list => taskListService.createTaskList(new TaskList(list.name, 0, generateUniqueId())))
 
 displayTasks()
 displayProjects(projectSection)
-
-
-console.log(projectService.readProjects())
-console.log(projectService.readProjects()[0].id)
-console.log(projectService.readProjects()[0])
+displayTaskLists(taskListSection)
 

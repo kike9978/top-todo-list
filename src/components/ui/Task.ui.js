@@ -3,6 +3,7 @@ import Button from "./Button"
 const styles = {
     article: ["border", "border-black", "border-solid", "rounded-sm", "p-2"],
     h2: ["text-2xl", "font-bold"],
+    nameInput: ["truncate"],
     buttonContainer: ["flex", "gap-2"],
     updateNameButton: ["hidden"]
 }
@@ -31,6 +32,7 @@ export default function TaskUI(task, onDelete, onChange, onNameSubmit) {
 
     article.classList.add(...styles.article)
     h2.classList.add(...styles.h2)
+    nameInput.classList.add(...styles.nameInput)
     buttonContainer.classList.add(...styles.buttonContainer)
     updateNameButton.classList.add(...styles.updateNameButton)
 
