@@ -2,6 +2,12 @@ import tasksData from "../data/tasksData.json"
 
 export default class TaskListService {
 
+    getActiveTasklist() {
+        const activeListElement = document.querySelector("[data-status=active")
+
+        return activeListElement.getAttribute("data-id")
+    }
+
 
     createTaskList(taskList) {
         const taskLists = this.getTaskLists();

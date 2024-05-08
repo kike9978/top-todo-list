@@ -6,6 +6,9 @@ export default function TaskListUI(taskList) {
     id.innerText = taskList.id
     article.appendChild(p)
     article.appendChild(id)
+    article.style.backgroundColor = taskList.color
+
+    article.setAttribute("data-id", taskList.id)
 
     return article
 }
