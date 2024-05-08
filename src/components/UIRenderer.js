@@ -3,7 +3,9 @@ import ProjectService from "../services/ProjectService"
 import TaskListService from "../services/TaskListService"
 import TaskUI from "./ui/Task.ui"
 import ProjectUI from "./ui/Project.ui"
+import TaskListUI from "./ui/TaskList.ui"
 import Button from "./ui/Button"
+
 const taskService = new TaskService()
 const projectService = new ProjectService()
 const taskListService = new TaskListService()
@@ -21,13 +23,8 @@ function displayProjects(projectSection) {
 function displayTaskLists(taskListSection) {
     const fragment = document.createDocumentFragment()
     taskListService.readTaskLists().forEach(taskList => {
-        const p = document.createElement("p")
-        const id = document.createElement("p")
-        p.innerText = taskList.name
-        id.innerText = taskList.id
-
-        fragment.appendChild(p)
-        fragment.appendChild(id)
+        const taskListUI = TaskListUI(taskList)
+        fragment.appendChild(taskListUI)
     })
     taskListSection.appendChild(fragment)
 }
@@ -65,7 +62,6 @@ function reRenderTasks() {
 }
 
 function displayTasks() {
-
     const tasksSection = document.querySelector("#tasks-section")
     const fragment = document.createDocumentFragment()
     taskService.getFilteredTasks().forEach(task => {

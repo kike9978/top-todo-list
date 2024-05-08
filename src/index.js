@@ -72,6 +72,7 @@ listsMockData.forEach(list => taskListService.createTaskList(new TaskList(list.n
 taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted, task.taskListId)))
 projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.color, project.taskList)));
 
+
 displayTasks()
 displayProjects(projectSection)
 displayTaskLists(taskListSection)

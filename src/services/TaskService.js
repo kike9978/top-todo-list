@@ -1,9 +1,18 @@
 import tasksData from "../data/tasksData.json"
+import taskListsIds from "../data/taskListsIds"
 
 export default class TaskService {
 
+    getTasksByTaskListId(taskListId) {
+        const tasks = this.getTasks()
+
+        return tasks.filter(task => task.taskListId === taskListId)
+
+    }
+
     getFilteredTasks() {
-        const tasks = this.getTasks();
+        /* const tasks = this.getTasks(); */
+        const tasks = this.getTasksByTaskListId(taskListsIds[0])
         const filteredTasks = []
         const pendingTasks = tasks.filter(task => !task.isCompleted)
         const completedTasks = tasks.filter(task => task.isCompleted)
