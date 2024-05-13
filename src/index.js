@@ -19,6 +19,7 @@ import { reRenderTasks, displayTasks, displayProjects, displayTaskLists } from "
 import taskListsIds, { consoleTest } from "./data/taskListsIds"
 
 import Modal from "./components/ui/Modal"
+import NoWorkResult from "postcss/lib/no-work-result"
 
 const createTaskModal = Modal(handleTaskCreationFormSubmit)
 
@@ -49,7 +50,9 @@ function handleTaskCreationFormSubmit(e) {
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
     console.log(formDataOjb)
-    createTask(new Task(formDataOjb.task, formDataOjb.description, formDataOjb.dueDate, formDataOjb.isImportant, generateUniqueId(), formDataOjb.isCompleted))
+
+    /* Right Now all tasks are created under the first list id */
+    createTask(new Task(formDataOjb.task, formDataOjb.description, formDataOjb.dueDate, formDataOjb.isImportant, generateUniqueId(), formDataOjb.isCompleted, taskListsIds[0]))
     reRenderTasks(tasksSection)
 
 
