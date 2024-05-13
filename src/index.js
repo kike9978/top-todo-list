@@ -3,7 +3,7 @@ import "./styles/style.css"
 import Project from "./components/Project"
 import Task from "./components/Task"
 import TaskList from "./components/TaskList"
-import ProjectService from "./services/ProjectService"
+import { createProject, deleteProject, getProjects, readProjects, updateProject } from "./services/ProjectService"
 import TaskListService from "./services/TaskListService"
 import { createTask, deleteTask, getAllTasks, getFilteredTasks, getTaskById, getTasks, getTasksByTaskListId, readSingleTask, readTasks, updateTask } from "./services/TaskService"
 
@@ -36,7 +36,6 @@ const styles = {
 
 tasksSection.id = "tasks-section"
 
-const projectService = new ProjectService()
 const taskListService = new TaskListService()
 
 const createTaskButton = Button("Create Task", () => {
@@ -72,7 +71,7 @@ console.log(taskListsIds)
 
 listsMockData.forEach(list => taskListService.createTaskList(new TaskList(list.name, "", list.id, list.color)))
 taskMockData.forEach(task => createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted, task.taskListId)))
-projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.taskList)));
+projectMockData.forEach(project => createProject(new Project(project.name, generateUniqueId(), project.taskList)));
 
 
 displayTasks()

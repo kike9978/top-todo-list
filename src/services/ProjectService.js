@@ -1,32 +1,29 @@
 import tasksData from "../data/tasksData.json"
 
-export default class ProjectService {
+export function createProject(project) {
+    const projects = getProjects();
+    projects.push(project)
+    tasksData["projects"] = JSON.stringify(projects)
+}
 
-    createProject(project) {
-        const projects = this.getProjects();
-        projects.push(project)
-        tasksData["projects"] = JSON.stringify(projects)
-    }
+export function readProjects() {
+    const projectString = tasksData["projects"]
+    return projectString ? JSON.parse(projectString) : []
+}
 
-    readProjects() {
-        const projectString = tasksData["projects"]
-        return projectString ? JSON.parse(projectString) : []
-    }
+export function updateProject(projectId, updateProject) {
+    const projects = getProjects()
+    const projectIndex = projects.findIndex(project => project.id === projectId);
+    projects[projectIndex] = updateProject;
+    tasksData["projects"] = JSON.stringify(projects)
+}
 
-    updateProject(projectId, updateProject) {
-        const projects = this.getProjects()
-        const projectIndex = projects.findIndex(project => project.id === projectId);
-        projects[projectIndex] = updateProject;
-        tasksData["projects"] = JSON.stringify(projects)
-    }
+export function deleteProject(projectId) {
+    const projects = getProjects();
+    const filteredProjects = projects.filter(project => project.id !== projectId);
+    tasksData["projects"] = JSON.stringify(filteredProjects)
+}
 
-    deleteProject(projectId) {
-        const projects = this.getProjects();
-        const filteredProjects = projects.filter(project => project.id !== projectId);
-        tasksData["projects"] = JSON.stringify(filteredProjects)
-    }
-
-    getProjects() {
-        return this.readProjects()
-    }
+export function getProjects() {
+    return readProjects()
 }

@@ -1,18 +1,17 @@
 import { createTask, deleteTask, getAllTasks, getFilteredTasks, getTaskById, getTasks, getTasksByTaskListId, readSingleTask, readTasks, updateTask } from "../services/TaskService"
-import ProjectService from "../services/ProjectService"
+import { createProject, deleteProject, getProjects, readProjects, updateProject } from "../services/ProjectService"
 import TaskListService from "../services/TaskListService"
 import TaskUI from "./ui/Task.ui"
 import ProjectUI from "./ui/Project.ui"
 import TaskListUI from "./ui/TaskList.ui"
 import Button from "./ui/Button"
 
-const projectService = new ProjectService()
 const taskListService = new TaskListService()
 
 
 function displayProjects(projectSection) {
     const fragment = document.createDocumentFragment()
-    projectService.readProjects().forEach(project => {
+    readProjects().forEach(project => {
         const projectUI = ProjectUI(project)
         fragment.appendChild(projectUI)
     })
