@@ -1,3 +1,14 @@
+# New steps
+
+- [ ] Extend model classes to have getter and setters
+- [ ] Create seralization and deseralization methods for every model
+- [ ] Investigate where do certain methods for the ui component should live and how to pass callback
+- [ ] Refactor the UI renderer and use index.js for system managment
+- [ ] Optional - Check if its neccesary to have a global state that indicates which is the active list or project
+- [ ] Refactor to use getter and setters
+
+---
+
 - [ ] Componentizar una tarea
 - [ ] Crear grupos
 - [ ] Crear listas

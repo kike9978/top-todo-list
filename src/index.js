@@ -5,7 +5,7 @@ import Task from "./components/Task"
 import TaskList from "./components/TaskList"
 import ProjectService from "./services/ProjectService"
 import TaskListService from "./services/TaskListService"
-import TaskService from "./services/TaskService"
+import { createTask, deleteTask, getAllTasks, getFilteredTasks, getTaskById, getTasks, getTasksByTaskListId, readSingleTask, readTasks, updateTask } from "./services/TaskService"
 
 import taskMockData from "./data/taskMockData.json"
 import projectMockData from "./data/projectMockData.json"
@@ -37,7 +37,6 @@ tasksSection.id = "tasks-section"
 
 const projectService = new ProjectService()
 const taskListService = new TaskListService()
-const taskService = new TaskService()
 
 const createTaskButton = Button("Create Task", () => {
     createTaskModal.showModal()
@@ -50,7 +49,7 @@ function handleTaskCreationFormSubmit(e) {
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
     console.log(formDataOjb)
-    taskService.createTask(new Task(formDataOjb.task, formDataOjb.description, formDataOjb.dueDate, formDataOjb.isImportant, generateUniqueId(), formDataOjb.isCompleted))
+    createTask(new Task(formDataOjb.task, formDataOjb.description, formDataOjb.dueDate, formDataOjb.isImportant, generateUniqueId(), formDataOjb.isCompleted))
     reRenderTasks(tasksSection)
 
 
@@ -69,7 +68,7 @@ body.appendChild(createTaskModal)
 console.log(taskListsIds)
 
 listsMockData.forEach(list => taskListService.createTaskList(new TaskList(list.name, "", list.id, list.color)))
-taskMockData.forEach(task => taskService.createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted, task.taskListId)))
+taskMockData.forEach(task => createTask(new Task(task.name, task.description, task.dueDate, task.isImportant, generateUniqueId(), task.isCompleted, task.taskListId)))
 projectMockData.forEach(project => projectService.createProject(new Project(project.name, generateUniqueId(), project.taskList)));
 
 

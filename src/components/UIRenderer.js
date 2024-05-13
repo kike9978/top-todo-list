@@ -1,4 +1,4 @@
-import TaskService from "../services/TaskService"
+import { createTask, deleteTask, getAllTasks, getFilteredTasks, getTaskById, getTasks, getTasksByTaskListId, readSingleTask, readTasks, updateTask } from "../services/TaskService"
 import ProjectService from "../services/ProjectService"
 import TaskListService from "../services/TaskListService"
 import TaskUI from "./ui/Task.ui"
@@ -6,7 +6,6 @@ import ProjectUI from "./ui/Project.ui"
 import TaskListUI from "./ui/TaskList.ui"
 import Button from "./ui/Button"
 
-const taskService = new TaskService()
 const projectService = new ProjectService()
 const taskListService = new TaskListService()
 
@@ -31,13 +30,13 @@ function displayTaskLists(taskListSection) {
 
 function handleDeleteTask(taskId) {
 
-    taskService.deleteTask(taskId);
+    deleteTask(taskId);
     reRenderTasks();
 }
 
 function handleCompleteTask(taskId) {
-    const updatedStatus = !taskService.readSingleTask(taskId).isCompleted
-    taskService.updateTask(taskId, { isCompleted: updatedStatus })
+    const updatedStatus = !readSingleTask(taskId).isCompleted
+    updateTask(taskId, { isCompleted: updatedStatus })
     reRenderTasks()
 }
 
@@ -46,7 +45,7 @@ function handleUpdateTaskName(e, taskId) {
 
     const myformData = new FormData(e.target)
     const formDataOjb = Object.fromEntries(myformData.entries())
-    taskService.updateTask(taskId, { name: formDataOjb.taskName })
+    updateTask(taskId, { name: formDataOjb.taskName })
     reRenderTasks()
 
 
@@ -64,7 +63,7 @@ function reRenderTasks() {
 function displayTasks() {
     const tasksSection = document.querySelector("#tasks-section")
     const fragment = document.createDocumentFragment()
-    taskService.getFilteredTasks().forEach(task => {
+    getFilteredTasks().forEach(task => {
         const taskUI = TaskUI(task, () => handleDeleteTask(task.id), () => handleCompleteTask(task.id), (e) => handleUpdateTaskName(e, task.id))
         fragment.appendChild(taskUI)
     })
